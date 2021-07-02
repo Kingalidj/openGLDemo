@@ -22,6 +22,8 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+#include "test/TestClearColor.h"
+
 int main(void)
 {
 	GLFWwindow* window;
@@ -102,10 +104,12 @@ int main(void)
 	/* ImGui init */
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	//ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init((char*)glGetString(GL_NUM_SHADING_LANGUAGE_VERSIONS));
+
+	test::TestClearColor test;
 
 	//glm::vec3 translationA(200, 200, 0);
 	//glm::vec3 translationB(100, 200, 0);
@@ -120,10 +124,15 @@ int main(void)
 		//glClear(GL_COLOR_BUFFER_BIT);
 		renderer.Clear();
 
+		test.OnUpdate(0.0f);
+		test.OnRender();
+
 		/* ImGui new Frame */
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+
+		test.OnImGuiRender();
 
 		//{
 		//	glm::mat4 model = glm::mat4(1.0f);

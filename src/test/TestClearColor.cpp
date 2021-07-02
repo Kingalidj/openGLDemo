@@ -32,6 +32,7 @@ namespace test
 
 	void TestClearColor::OnImGuiRender()
 	{
+		ImGui::SetWindowFontScale(1.8f);
 		ImGui::ColorEdit4("Clear Color", m_ClearColor);
 	}
 
