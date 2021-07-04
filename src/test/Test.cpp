@@ -13,7 +13,7 @@ namespace test
 
 	void TestMenu::OnImGuiRender()
 	{
-		ImGui::SetWindowFontScale(1.8);
+		ImGui::SetWindowFontScale(1.8f);
 		for (auto& test : m_Tests)
 		{
 			if (ImGui::Button(test.first.c_str()))
